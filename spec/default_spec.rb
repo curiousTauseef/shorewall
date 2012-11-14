@@ -5,7 +5,7 @@ require 'chefspec'
     before (:all) {
       @chef_run = ChefSpec::ChefRunner.new
       @chef_run.node.automatic_attrs["platform_family"] = platform_family
-      @chef_run.node["shorewall"] = {
+      @chef_run.node.set["shorewall"] = {
         "zone_interfaces" => {"lan" => "eth0"}
       }
       @chef_run.converge 'shorewall::default'
