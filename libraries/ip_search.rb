@@ -3,7 +3,7 @@ require 'ipaddr'
 def private_addresses_for_node(node_def)
   local_addresses = []
   return local_addresses if node_def['network'] == nil # node may have no ohai data yet
-  private_ranges = node[:shorewall][:private_ranges].map { |ip_str| IPAddr.new(ip_str) }
+  private_ranges = node['shorewall']['private_ranges'].map { |ip_str| IPAddr.new(ip_str) }
   node_def["network"]["interfaces"].each_pair do |ifname, ifdata|
     if ! ifdata["addresses"] ; then next; end
     ifdata["addresses"].keys.each { |ip_str|
@@ -22,7 +22,12 @@ end
 def get_private_addresses(search_criteria, mandatory=false)
   # allow access from app servers
   retval = []
-  search(:node, search_criteria).each do |matching_node|
+  if Chef::Config[:solo]
+    nodes = search(:node, search_criteria)
+  else
+    nodes = search(:node, search_criteria)
+  end
+  nodes.each do |matching_node|
     break if matching_node == :node
     private_addresses_for_node(matching_node).each do |interface_address|
       next if not interface_address
@@ -44,7 +49,7 @@ def add_shorewall_rules(match_nodes, rules, mandatory=false)
         next
       end
       done_nodes.add local_address
-      node.override[:shorewall][:rules] << rules.merge(rules) do |k,v,_|
+      node.set['shorewall']['rules'] << rules.merge(rules) do |k,v,_|
         if v.is_a? Proc then
           v = v.call({
             :local_address => local_address,

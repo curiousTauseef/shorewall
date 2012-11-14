@@ -26,5 +26,5 @@ elements=[
 #SECTION ESTABLISHED
 #SECTION RELATED
 SECTION NEW
-<%= shorewall_format_file(elements, node[:shorewall][:rules]) %>
+<%= shorewall_format_file(elements, node['shorewall']['rules']) %>
 #LAST LINE -- ADD YOUR ENTRIES BEFORE THIS ONE -- DO NOT REMOVE

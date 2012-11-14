@@ -18,6 +18,6 @@ elements=[
 ###############################################################################
 #SOURCE         DEST            POLICY          LOG             LIMIT:BURST
 #                                               LEVEL
-<%= shorewall_format_file(elements, node[:shorewall][:policy]) %>
+<%= shorewall_format_file(elements, node['shorewall']['policy']) %>
 #LAST LINE -- DO NOT REMOVE
 

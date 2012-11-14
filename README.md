@@ -58,6 +58,38 @@ Note how line continuations are added as necessary to keep column alignment in p
 Usage
 =====
 
+Node Variables
+--------------
+
+*Important:* Many of these are defined at the `override` level rather than the
+`default` level. This is done such that `node[:shorewall][:zones] << { ... }`
+works as you'd expect.
+
+* `shorewall/default_interface_settings` - Default settings to be used in
+  filling out the `interfaces` file. May be overwritten on a per-interface basis.
+* `shorewall/enabled` - Boolean (also accepts string versions of true/false);
+  whether we actually start the firewall after configuring it.
+* `shorewall/private_ranges` - IP address ranges considered eligible as private
+  interconnect addresses.
+* `shorewall/zone_hosts/ZONE` - if this starts with `search:`, the remainder is
+  used as a search expression to identify hosts which should be considered
+  members of this zone (when populating the shorewall `hosts` file). Otherwise,
+  it can be a CIDR address (as `192.168.0.0/16` or `0.0.0.0/0`) to refer to a
+  subnet.
+* `shorewall/zone_interfaces/ZONE` - maps from a shorewall zone name to the
+  Ethernet interface serving that zone. If multiple zones are mapped to the
+  same interface, then that interface will be distinguished via the shorewall
+  `hosts` file.
+* `shorewall/rules`, `shorewall/policy`, `shorewall/hosts`,
+  `shorewall/interfaces` all correspond directly to the relevant upstream
+  configuration files.
+
+For more details, see the `attributes/default.rb` file.
+
+
+Library
+-------
+
 Typical usage from another module is expected to look like the following:
 
     add_shorewall_rules(
@@ -100,33 +132,6 @@ Alternately, an explicit rule (or policy) can be added as follows:
 Again: Only address matching one of the networks defined in
 `shorewall/private_ranges` will be added by the `add_shorewall_rules` helper.
 
-Attributes
-==========
-
-*Important:* Many of these are defined at the `override` level rather than the
-`default` level. This is done such that `node[:shorewall][:zones] << { ... }`
-works as you'd expect.
-
-* `shorewall/default_interface_settings` - Default settings to be used in
-  filling out the `interfaces` file. May be overwritten on a per-interface basis.
-* `shorewall/enabled` - Boolean (also accepts string versions of true/false);
-  whether we actually start the firewall after configuring it.
-* `shorewall/private_ranges` - IP address ranges considered eligible as private
-  interconnect addresses.
-* `shorewall/zone_hosts/ZONE` - if this starts with `search:`, the remainder is
-  used as a search expression to identify hosts which should be considered
-  members of this zone (when populating the shorewall `hosts` file). Otherwise,
-  it can be a CIDR address (as `192.168.0.0/16` or `0.0.0.0/0`) to refer to a
-  subnet.
-* `shorewall/zone_interfaces/ZONE` - maps from a shorewall zone name to the
-  Ethernet interface serving that zone. If multiple zones are mapped to the
-  same interface, then that interface will be distinguished via the shorewall
-  `hosts` file.
-* `shorewall/rules`, `shorewall/policy`, `shorewall/hosts`,
-  `shorewall/interfaces` all correspond directly to the relevant upstream
-  configuration files.
-
-For more details, see the `attributes/default.rb` file.
 
 Limitations
 ===========
@@ -134,8 +139,5 @@ Limitations
 Patches to address any of these items would be gratefully accepted.
 
 * Includes a hardcoded, non-configurable versions of the `shorewall.conf` file.
-* Searches retrieve far more information (entire nodes) than is actually
-  needed.
-* Support for non-CentOS targets should be both worthwhile and straightforward.
 * Not all of shorewall's configuration is mapped.
 * No thought has been given to IPv6 support.

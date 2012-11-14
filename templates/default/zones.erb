@@ -18,5 +18,5 @@ elements=[
 ###############################################################################
 #ZONE   TYPE            OPTIONS         IN                      OUT
 #                                       OPTIONS                 OPTIONS
-<%= shorewall_format_file(elements, node[:shorewall][:zones]) %>
+<%= shorewall_format_file(elements, node['shorewall']['zones']) %>
 #LAST LINE - ADD YOUR ENTRIES ABOVE THIS ONE - DO NOT REMOVE

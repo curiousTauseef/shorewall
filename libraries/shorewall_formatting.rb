@@ -20,5 +20,3 @@ def shorewall_format_file(column_defs, data)
   }
   return retval
 end
-
-# vim: ai et sts=2 sw=2 ts=2
