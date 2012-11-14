@@ -1,6 +1,6 @@
 default["shorewall"]["private_ranges"] = ['192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8']
 
-default["shorewall"]["enabled"] = false
+default["shorewall"]["enabled"] = true
 
 default["shorewall"]["zone_interfaces"]["lan"] = "eth0"
 
