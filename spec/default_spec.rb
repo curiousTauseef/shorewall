@@ -1,7 +1,7 @@
 require 'chefspec'
 
 %w{debian rhel}.each do |platform_family|
-  describe "The shorewall::default for #{platform_family}" do
+  describe "The shorewall::default recipe for #{platform_family}" do
     before (:all) {
       @chef_run = ChefSpec::ChefRunner.new
       @chef_run.node.automatic_attrs["platform_family"] = platform_family
