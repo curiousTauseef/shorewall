@@ -94,16 +94,15 @@ Typical usage from another module is expected to look like the following:
 
     add_shorewall_rules(
       match_nodes=[
-        ['recipes:tippr_db\:\:haproxy', { :name => 'database load-balancer' }],
-        ['roles:monitoring', { :name => 'monitoring server' }]
+        ['roles:monitoring-server', { :name => 'Monitoring Server' }]
       ],
       rules={
-        :description => proc { |data| "Allow #{data[:match][:name]} #{data[:node].name} access to repmgr monitor" },
+        :description => proc { |data| "Allow #{data["match"]["name"]} #{data["node"]["name"]} access to check_mk" },
         :action => :ACCEPT,
-        :source => proc { |data| "lan:#{data[:local_address]}" },
+        :source => proc { |data| "lan:#{data["local_address"]}" },
         :dest => :fw,
         :proto => :tcp,
-        :dest_port => 5480
+        :dest_port => 6556
       }
     )
 
