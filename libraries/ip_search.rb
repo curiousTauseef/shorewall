@@ -21,12 +21,12 @@ end
 
 def get_private_addresses(search_criteria, mandatory=false)
   # allow access from app servers
-  retval = []
   if Chef::Config[:solo]
     nodes = search(:node, search_criteria)
   else
     nodes = search(:node, search_criteria)
   end
+  retval = Array.new
   nodes.each do |matching_node|
     break if matching_node == :node
     private_addresses_for_node(matching_node).each do |interface_address|
@@ -65,5 +65,3 @@ def add_shorewall_rules(match_nodes, rules, mandatory=false)
     raise "no matches for mandatory search"
   end
 end
-
-# vim: ai et sts=2 sw=2 ts=2
