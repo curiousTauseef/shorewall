@@ -18,6 +18,9 @@ default["shorewall"]["zones"] = [
     {"zone" => "lan", "type" => "ipv4"}
 ]
 
+# turn "Off" to deactivate IP_FORWARDING
+default["shorewall"]["ip_forwarding"] = "On"
+
 default["shorewall"]["policy"] = [
     {"source" => "fw", "dest" => "all", "policy" => "ACCEPT"},
     {"source" => "lan", "dest" => "fw", "policy" => "REJECT", "log" => "DEBUG"},
