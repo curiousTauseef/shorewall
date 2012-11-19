@@ -1,6 +1,6 @@
 default["shorewall"]["private_ranges"] = ['192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8']
 
-default["shorewall"]["enabled"] = false
+default["shorewall"]["enabled"] = true
 
 default["shorewall"]["zone_interfaces"]["lan"] = "eth0"
 
@@ -18,6 +18,9 @@ default["shorewall"]["zones"] = [
     {"zone" => "lan", "type" => "ipv4"}
 ]
 
+# turn "Off" to deactivate IP_FORWARDING
+default["shorewall"]["ip_forwarding"] = "On"
+
 default["shorewall"]["policy"] = [
     {"source" => "fw", "dest" => "all", "policy" => "ACCEPT"},
     {"source" => "lan", "dest" => "fw", "policy" => "REJECT", "log" => "DEBUG"},
@@ -29,5 +32,6 @@ override["shorewall"]["interfaces"] = [ ]
 override["shorewall"]["hosts"] = [ ]
 
 default["shorewall"]["rules"] = [
-    { "description" => "Incoming SSH to firewall", "source" => "all", "dest" => "fw", "proto" => "tcp", "dest_port" => 22, "action" => "ACCEPT" }
+    { "description" => "Incoming SSH to firewall", "source" => "all", "dest" => "fw", "proto" => "tcp", "dest_port" => 22, "action" => "ACCEPT" },
+    { "description" => "Incoming check_mk to firewall", "source" => "lan", "dest" => "fw", "proto" => "tcp", "dest_port" => 6556, "action" => "ACCEPT" }
 ]
