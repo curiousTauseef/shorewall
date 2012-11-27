@@ -8,7 +8,9 @@ version           "0.0.2"
 recipe "shorewall", "Configures and activates Shorewall firewall"
 
 depends 'yumrepo'
+
 supports 'centos'
+supports 'debian'
 
 attribute "shorewall/enabled",
   :display_name => "Shorewall enabled?",
