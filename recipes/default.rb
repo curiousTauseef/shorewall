@@ -38,6 +38,27 @@ zones_per_interface.each_pair do |interface, zones|
   end
 end
 
+directory "/etc/shorewall/params.d"
+
+node["shorewall"]["params"].each do |file, data|
+  template "/etc/shorewall/params.d/#{file}" do
+    source "params.file.erb"
+    mode 0600
+    owner "root"
+    group "root"
+    variables( "data" => data )
+    notifies :restart, "service[shorewall]"
+  end
+end
+template "/etc/shorewall/params" do
+  source "params.erb"
+  mode 0600
+  owner "root"
+  group "root"
+  variables( "files" => node["shorewall"]["params"] )
+  notifies :restart, "service[shorewall]"
+end
+
 template "/etc/shorewall/hosts" do
   source "hosts.erb"
   mode 0600

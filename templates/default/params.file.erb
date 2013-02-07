@@ -1,0 +1,5 @@
+<% unless @data.nil? %>
+  <% @data.each do |name,value| %>
+<%= name %>=<%= value %>
+  <% end %>
+<% end %>
