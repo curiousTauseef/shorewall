@@ -19,7 +19,7 @@ default["shorewall"]["zones"] = [
 ]
 
 # turn "Off" to deactivate IP_FORWARDING
-default["shorewall"]["ip_forwarding"] = "On"
+default["shorewall"]["ip_forwarding"] = "Off"
 
 default["shorewall"]["policy"] = [
     {"source" => "fw", "dest" => "all", "policy" => "ACCEPT"},
