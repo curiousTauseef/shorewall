@@ -1,0 +1,5 @@
+<% unless @files.nil? %>
+  <% @files.each do |name,data| %>
+INCLUDE params.d/<%= name %>
+  <% end %>
+<% end %>
