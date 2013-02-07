@@ -10,7 +10,7 @@ default["shorewall"]["zone_hosts"]["net"] = "0.0.0.0/0"
 
 # Interface default
 default["shorewall"]["default_interface_settings"]["broadcast"] = "detect"
-default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,blacklist,routefilter,nosmurfs,logmartians,dhcp"
+default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,routefilter,nosmurfs,logmartians,dhcp"
 
 # zones ordered from most specific to most general
 default["shorewall"]["zones"] = [
@@ -32,7 +32,6 @@ override["shorewall"]["interfaces"] = [ ]
 override["shorewall"]["hosts"] = [ ]
 
 default["shorewall"]["rules"] = [
-    { "description" => "Incoming SSH to firewall", "source" => "all", "dest" => "fw", "proto" => "tcp", "dest_port" => 22, "action" => "ACCEPT" },
     { "description" => "Incoming check_mk to firewall", "source" => "lan", "dest" => "fw", "proto" => "tcp", "dest_port" => 6556, "action" => "ACCEPT" }
 ]
 
