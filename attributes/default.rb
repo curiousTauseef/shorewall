@@ -10,7 +10,7 @@ default["shorewall"]["zone_hosts"]["net"] = "0.0.0.0/0"
 
 # Interface default
 default["shorewall"]["default_interface_settings"]["broadcast"] = "detect"
-default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,routefilter,blacklist,nosmurfs,logmartians,dhcp"
+default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,routefilter,nosmurfs,logmartians,dhcp"
 
 # zones ordered from most specific to most general
 default["shorewall"]["zones"] = [
