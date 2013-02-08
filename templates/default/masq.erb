@@ -1,0 +1,15 @@
+<%
+elements=[
+  [:interface, 16],
+  [:source, 16],
+  [:address, 16]
+]
+%>
+
+# See the file README.txt for further details.
+#------------------------------------------------------------------------------
+# For information about entries in this file, type "man shorewall-masq"
+###############################################################################
+#INTERFACE		SOURCE		ADDRESS		PROTO	PORT(S)	IPSEC	MARK
+<%= shorewall_format_file(elements, node['shorewall']['masq']) %>
+#LAST LINE - ADD YOUR ENTRIES ABOVE THIS ONE - DO NOT REMOVE
