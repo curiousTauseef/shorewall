@@ -10,13 +10,16 @@ default["shorewall"]["zone_hosts"]["net"] = "0.0.0.0/0"
 
 # Interface default
 default["shorewall"]["default_interface_settings"]["broadcast"] = "detect"
-default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,blacklist,routefilter,nosmurfs,logmartians,dhcp"
+default["shorewall"]["default_interface_settings"]["options"] = "tcpflags,routefilter,blacklist,nosmurfs,logmartians,dhcp"
 
 # zones ordered from most specific to most general
 default["shorewall"]["zones"] = [
     {"zone" => "fw", "type" => "firewall"},
     {"zone" => "lan", "type" => "ipv4"}
 ]
+
+# Masquerading
+default["shorewall"]["masq"] = [ ]
 
 # turn "Off" to deactivate IP_FORWARDING
 default["shorewall"]["ip_forwarding"] = "On"

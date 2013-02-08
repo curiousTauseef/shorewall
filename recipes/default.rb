@@ -99,6 +99,14 @@ template "/etc/shorewall/zones" do
   notifies :restart, "service[shorewall]"
 end
 
+template "/etc/shorewall/masq" do
+  source "masq.erb"
+  mode 0600
+  owner "root"
+  group "root"
+  notifies :restart, "service[shorewall]"
+end
+
 template "/etc/shorewall/shorewall.conf" do
   only_if { node['shorewall']['enabled'] }
 end
