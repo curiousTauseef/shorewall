@@ -22,7 +22,7 @@ default["shorewall"]["zones"] = [
 default["shorewall"]["masq"] = [ ]
 
 # turn "Off" to deactivate IP_FORWARDING
-default["shorewall"]["ip_forwarding"] = "On"
+default["shorewall"]["ip_forwarding"] = "Off"
 
 default["shorewall"]["policy"] = [
     {"source" => "fw", "dest" => "all", "policy" => "ACCEPT"},
@@ -35,7 +35,6 @@ override["shorewall"]["interfaces"] = [ ]
 override["shorewall"]["hosts"] = [ ]
 
 default["shorewall"]["rules"] = [
-    { "description" => "Incoming SSH to firewall", "source" => "all", "dest" => "fw", "proto" => "tcp", "dest_port" => 22, "action" => "ACCEPT" },
     { "description" => "Incoming check_mk to firewall", "source" => "lan", "dest" => "fw", "proto" => "tcp", "dest_port" => 6556, "action" => "ACCEPT" }
 ]
 
