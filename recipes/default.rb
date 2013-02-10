@@ -47,7 +47,7 @@ node["shorewall"]["params"].each do |file, data|
     owner "root"
     group "root"
     variables( "data" => data )
-    notifies :restart, "service[shorewall]"
+    notifies :restart, "service[shorewall]", :delayed
   end
 end
 template "/etc/shorewall/params" do
@@ -56,7 +56,7 @@ template "/etc/shorewall/params" do
   owner "root"
   group "root"
   variables( "files" => node["shorewall"]["params"] )
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/hosts" do
@@ -64,7 +64,7 @@ template "/etc/shorewall/hosts" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/interfaces" do
@@ -72,7 +72,7 @@ template "/etc/shorewall/interfaces" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/policy" do
@@ -80,7 +80,7 @@ template "/etc/shorewall/policy" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/rules" do
@@ -88,7 +88,7 @@ template "/etc/shorewall/rules" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/zones" do
@@ -96,7 +96,7 @@ template "/etc/shorewall/zones" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/masq" do
@@ -104,7 +104,7 @@ template "/etc/shorewall/masq" do
   mode 0600
   owner "root"
   group "root"
-  notifies :restart, "service[shorewall]"
+  notifies :restart, "service[shorewall]", :delayed
 end
 
 template "/etc/shorewall/shorewall.conf" do
