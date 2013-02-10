@@ -21,6 +21,7 @@ require 'chefspec'
        /etc/shorewall/policy
        /etc/shorewall/rules
        /etc/shorewall/shorewall.conf
+       /etc/shorewall/masq
     }.each do |tpl|
       it "should create file #{tpl}" do
         @chef_run.should create_file tpl
@@ -40,7 +41,7 @@ require 'chefspec'
       "/etc/shorewall/policy"         => "fw              all             ACCEPT          -               -\n\n" \
                                          "lan             fw              REJECT          -               -\n\n" \
                                          "all             all             REJECT          -               -",
-      "/etc/shorewall/rules"          => "ACCEPT          all             fw              tcp     22      -               -               -               -       -",
+      "/etc/shorewall/rules"          => "ACCEPT          lan             fw              tcp     6556    -               -               -               -       -",
       "/etc/shorewall/shorewall.conf" => "STARTUP_ENABLED=Yes"
     }.each do |file, content|
       it "should create file #{file} with specific content" do
