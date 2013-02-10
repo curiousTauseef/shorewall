@@ -1,3 +1,4 @@
+name          'shorewall'
 maintainer		'Charles Duffy (PoweredByTippr)'
 maintainer_email	'charles@poweredbytippr.com'
 license			"Apache 2.0"
