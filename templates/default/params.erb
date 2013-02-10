@@ -1,5 +1,5 @@
 <% unless @files.nil? %>
   <% @files.each do |name,data| %>
-INCLUDE params.d/<%= name %>
+INCLUDE /etc/shorewall/params.d/<%= name %>
   <% end %>
 <% end %>
