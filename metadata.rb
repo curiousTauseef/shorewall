@@ -8,7 +8,7 @@ version           "0.0.12"
 
 recipe "shorewall", "Configures and activates Shorewall firewall"
 
-depends 'yumrepo'
+depends 'yum'
 
 supports 'centos'
 supports 'debian'
