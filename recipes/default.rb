@@ -1,7 +1,7 @@
 require 'set'
 
 if platform_family?('rhel')
-  include_recipe "yumrepo::epel"
+  include_recipe "yum::epel"
 end
 
 package "shorewall" do
