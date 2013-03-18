@@ -4,7 +4,7 @@ maintainer_email	'charles@poweredbytippr.com'
 license			"Apache 2.0"
 description		"Configures iptables with Shorewall"
 long_description	IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "0.0.14"
+version           "0.0.15"
 
 recipe "shorewall", "Configures and activates Shorewall firewall"
 
