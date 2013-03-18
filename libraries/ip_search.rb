@@ -49,7 +49,7 @@ def add_shorewall_rules(match_nodes, rules, mandatory=false)
         next
       end
       done_nodes.add local_address
-      node.set['shorewall']['rules'] << rules.merge(rules) do |k,v,_|
+      node.default['shorewall']['rules'] << rules.merge(rules) do |k,v,_|
         if v.is_a? Proc then
           v = v.call({
             :local_address => local_address,
