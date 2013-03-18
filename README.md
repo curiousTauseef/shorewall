@@ -97,9 +97,9 @@ Typical usage from another module is expected to look like the following:
         ['roles:monitoring-server', { :name => 'Monitoring Server' }]
       ],
       rules={
-        :description => proc { |data| "Allow #{data["match"]["name"]} #{data["node"]["name"]} access to check_mk" },
+        :description => proc { |data| "Allow #{data[:match][:name]} #{data[:node][:name]} access to check_mk" },
         :action => :ACCEPT,
-        :source => proc { |data| "lan:#{data["local_address"]}" },
+        :source => proc { |data| "lan:#{data[:local_address]}" },
         :dest => :fw,
         :proto => :tcp,
         :dest_port => 6556
@@ -107,10 +107,8 @@ Typical usage from another module is expected to look like the following:
     )
 
 ...in the above case, we're using the `add_shorewall_rules` helper to add an
-`ACCEPT` rule for each host which matches either the `tippr_db::haproxy` recipe
-or the `monitoring` role (with different comments depending on which role
-matched). If a single host matches twice, only a single rule (for each of its
-internal IP addresses) is added.
+`ACCEPT` rule for each host which matches `monitoring-server` role. If a single host matches twice, only
+a single rule (for each of its internal IP addresses) is added.
 
 Notably, any of the values in the `rules` hash can be a block, in which case it
 is executed with an argument containing both the match metadata passed to the
