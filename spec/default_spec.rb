@@ -6,7 +6,8 @@ require 'chefspec'
       @chef_run = ChefSpec::ChefRunner.new
       @chef_run.node.automatic_attrs["platform_family"] = platform_family
       @chef_run.node.set["shorewall"] = {
-        "zone_interfaces" => {"lan" => "eth0"}
+        "zone_interfaces" => {"lan" => "eth0"},
+        "rules" => [ { "description" => "Incoming check_mk to firewall", "source" => "lan", "dest" => "fw", "proto" => "tcp", "dest_port" => 6556, "action" => "ACCEPT" } ]
       }
       @chef_run.converge 'shorewall::default'
     }
