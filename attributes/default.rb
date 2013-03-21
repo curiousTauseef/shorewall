@@ -34,9 +34,7 @@ override["shorewall"]["interfaces"] = [ ]
 
 override["shorewall"]["hosts"] = [ ]
 
-default["shorewall"]["rules"] = [
-    { "description" => "Incoming check_mk to firewall", "source" => "lan", "dest" => "fw", "proto" => "tcp", "dest_port" => 6556, "action" => "ACCEPT" }
-]
+default["shorewall"]["rules"] = [ ]
 
 # Parameters to be filled in the params file and usable in rule creation
 default["shorewall"]["params"] = { }
