@@ -126,6 +126,7 @@ if platform_family?('debian')
 end
 
 service "shorewall" do
+  status_command '/sbin/shorewall status'
   supports [:status, :restart]
   action [:start, :enable]
   only_if { node['shorewall']['enabled'] }
