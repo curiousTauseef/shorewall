@@ -2,7 +2,7 @@ require 'set'
 
 case node['platform_family']
 when 'rhel'
-  include_recipe "yum::epel"
+  include_recipe "yum-epel"
 when 'debian'
   # TODO Workaround for shorewall-common bug
   directory "/var/lock/subsys" do
