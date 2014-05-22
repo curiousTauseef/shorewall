@@ -9,6 +9,7 @@ version           "0.0.18"
 recipe "shorewall", "Configures and activates Shorewall firewall"
 
 depends 'yum'
+depends 'yum-epel'
 
 supports 'centos'
 supports 'debian'
