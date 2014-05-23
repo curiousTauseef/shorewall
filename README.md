@@ -4,12 +4,12 @@ Description
 Shorewall is a rather comprehensive and easy-to-use abstraction layer on top of
 iptables.
 
+This repository is based on the (probably unmaintained) https://community.opscode.com/cookbooks/shorewall 
+original. We have cloned it to make some adjustments including Debian Support. It still works pretty much as before but we will try to keep this maintained.
+
 
 Requirements
 ============
-
-This cookbook currently uses the `yumrepo` module to install the EPEL
-repository, and is therefore CentOS-specific.
 
 The library functions anticipate a network topology in which a cluster of
 servers have interconnects over a "private" network which is sufficiently
