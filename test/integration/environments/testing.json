@@ -1,0 +1,48 @@
+{
+  "name": "testing",
+  "description": "The testing environment",
+  "cookbook_versions": {
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "shorewall": {
+      "params": {
+        "interfaces": {
+          "IF_LAN": "eth0",
+          "IF_NET": "eth1"
+        },
+        "networks": {
+          "NET_LAN": "10.1.0.0/16"
+        },
+        "env_testing": {
+          "VAGRANT_HOST": "10.0.2.2"
+        }
+      },
+      "zone_interfaces": {
+        "lan": "$IF_LAN",
+        "net": "$IF_NET"
+      },
+      "zone_hosts": {
+        "lan": "10.0.0.0/24"
+      },
+      "zones": [
+        {
+        "zone": "fw",
+        "type": "firewall"
+      },
+      {
+        "zone": "lan",
+        "type": "ipv4"
+      },
+      {
+        "zone": "net",
+        "type": "ipv4"
+      }
+      ],
+      "rules": [ ]
+    }
+  },
+  "override_attributes": {
+  }
+}

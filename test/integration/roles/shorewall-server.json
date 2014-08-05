@@ -1,0 +1,33 @@
+{
+  "name": "icinga-client",
+  "description": "Icinga client",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "shorewall": {
+      "rules": [
+        {
+        "description": "[ROLE] SSH from any source (for Vagrant)",
+        "source": "lan:$VAGRANT_HOST",
+        "dest": "fw",
+        "proto": "tcp",
+        "dest_port": 22,
+        "action": "ACCEPT"
+      },
+      {
+        "description": "[ROLE] Allow ICMP requests",
+        "source": "all",
+        "dest": "fw",
+        "action": "Ping(ACCEPT)"
+      }
+      ]
+    }
+  },
+  "override_attributes": {
+  },
+  "run_list": [
+    "recipe[shorewall::default]"
+  ],
+  "env_run_lists": {
+  }
+}
